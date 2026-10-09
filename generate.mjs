@@ -1,10 +1,10 @@
-import { mkdir, rm, writeFile } from "node:fs/promises";
+import { mkdir, rm, writeFile, cp } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { render } from "./source/site.js";
 
 const projectRoot = dirname(fileURLToPath(import.meta.url));
-const outputRoot = join(projectRoot, "public");
+const outputRoot = join(projectRoot, "docs");
 const basePath = "/stretchtap-support";
 
 const routes = [
@@ -45,3 +45,5 @@ await writeFile(join(outputRoot, ".nojekyll"), "", "utf8");
 await writeFile(join(outputRoot, "404.html"), adaptForProjectPages(render("/")), "utf8");
 
 console.log(`Generated ${routes.length} localized pages for GitHub Pages.`);
+
+await cp(join(projectRoot, "assets"), join(outputRoot, "assets"), { recursive: true });

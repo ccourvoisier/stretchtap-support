@@ -3,7 +3,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const projectRoot = dirname(fileURLToPath(import.meta.url));
-const outputRoot = join(projectRoot, "public");
+const outputRoot = join(projectRoot, "docs");
 const basePath = "/stretchtap-support/";
 const languages = ["fr", "es", "de", "it"];
 
